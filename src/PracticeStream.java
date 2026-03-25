@@ -9,6 +9,16 @@ public class PracticeStream {
         filterEvenNumbers();
         sumOfAllElements();
         countNumberOfStrings();
+        sortList();
+    }
+
+    private static void sortList() {
+        List<Integer> numbers = Arrays.asList(6, 5, 4, 2, 3, 12, 1);
+        System.out.println("Actual " + numbers);
+        List<Integer> sorted = numbers.stream()
+                .sorted()
+                .toList();
+        System.out.println("Sorted: " + sorted);
     }
 
     private static void convertToUppercase() {
