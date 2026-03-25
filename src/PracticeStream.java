@@ -8,6 +8,7 @@ public class PracticeStream {
         convertToUppercase();
         filterEvenNumbers();
         sumOfAllElements();
+        countNumberOfStrings();
     }
 
     private static void convertToUppercase() {
@@ -28,7 +29,17 @@ public class PracticeStream {
 
     private static void sumOfAllElements() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int sum = numbers.stream().mapToInt(n -> n).sum();
+        int sum = numbers.stream()
+                .mapToInt(n -> n)
+                .sum();
         System.out.println("sum = " + sum);
+    }
+
+    private static void countNumberOfStrings() {
+        List<String> input = Arrays.asList("java", "stream", "api");
+        long count = input.stream()
+                .filter(s -> s.length() > 3)
+                .count();
+        System.out.println("count = " + count);
     }
 }
