@@ -12,6 +12,10 @@ void main() {
     groupByLength();
     flatMap();
     findSecondHighest();
+    findFrequency();
+
+    getFirst3();
+
 }
 
 private static void removeDuplicate() {
@@ -131,4 +135,24 @@ private static void findSecondHighest() {
             .findFirst();
 
     IO.println("Second highest: " + secondHighest.orElse(-1));
+}
+
+private static void findFrequency() {
+    List<Integer> numbers = Arrays.asList(6, 5, 6, 2, 5, 3, 12, 1);
+    Map<Integer, Long> freq = numbers.stream()
+            .collect(Collectors.groupingBy(
+                    n -> n,
+                    Collectors.counting()
+            ));
+    IO.println("Frequency: " + freq);
+}
+
+private static void getFirst3() {
+    List<Integer> numbers = Arrays.asList(6, 5, 2, 3, 12, 1);
+    IO.println("Initial List: " + numbers);
+    List<Integer> top3 = numbers.stream()
+            .sorted(Comparator.reverseOrder())
+            .limit(3)
+            .toList();
+    IO.println("Top 3: " + top3);
 }
