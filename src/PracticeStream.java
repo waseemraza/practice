@@ -15,29 +15,8 @@ void main() {
     findFrequency();
     getFirst3();
 
-    /**
-     * custom Object sorting
-     */
     customObjectSorting();
-
-    /**
-     * Multi-level grouping
-     */
     multiLevelGrouping();
-}
-
-private static void customObjectSorting() {
-    final Employee employee1 = new Employee("Raza", 20, "IT");
-    final Employee employee2 = new Employee("Waseem", 30, "Sales");
-    final Employee employee3 = new Employee("Mohammad", 50, "IT");
-    final List<Employee> employees = List.of(employee1, employee2, employee3);
-
-    employees.forEach(x -> System.out.println(x.getName() + ":" + x.getAge()));
-    final List<Employee> sorted = employees.stream()
-            .sorted(Comparator.comparing(Employee::getAge).reversed())
-            .toList();
-
-    sorted.forEach(x -> System.out.println(x.getName() + ":" + x.getAge()));
 }
 
 private static void removeDuplicate() {
@@ -179,11 +158,25 @@ private static void getFirst3() {
     IO.println("Top 3: " + top3);
 }
 
+private static void customObjectSorting() {
+    final Employee employee1 = new Employee("Raza", 20, 2000,"IT");
+    final Employee employee2 = new Employee("Waseem", 30, 3000,"Sales");
+    final Employee employee3 = new Employee("Mohammad", 50, 5000, "IT");
+    final List<Employee> employees = List.of(employee1, employee2, employee3);
+
+    employees.forEach(x -> System.out.println(x.getName() + ":" + x.getAge()));
+    final List<Employee> sorted = employees.stream()
+            .sorted(Comparator.comparing(Employee::getAge).reversed())
+            .toList();
+
+    sorted.forEach(x -> System.out.println(x.getName() + ":" + x.getAge()));
+}
+
 private static void multiLevelGrouping() {
-    final Employee employee1 = new Employee("Raza", 20, "IT");
-    final Employee employee2 = new Employee("Waseem", 30, "Sales");
-    final Employee employee3 = new Employee("Peter", 30, "Sales");
-    final Employee employee4 = new Employee("Mohammad", 50, "IT");
+    final Employee employee1 = new Employee("Raza", 20, 2000, "IT");
+    final Employee employee2 = new Employee("Waseem", 30, 3000,"Sales");
+    final Employee employee3 = new Employee("Peter", 30, 3000,"Sales");
+    final Employee employee4 = new Employee("Mohammad", 50, 5000,"IT");
     final List<Employee> employees = List.of(employee1, employee2, employee3, employee4);
 
     Map<String, Map<Integer, List<Employee>>> result =
@@ -194,7 +187,7 @@ private static void multiLevelGrouping() {
                     ));
 
     result.forEach((key, value) -> {
-        IO.println(key);
+        IO.println("Department: " + key);
         value.forEach((k, v) ->
                 IO.println(k + " " +
                         v.stream()
